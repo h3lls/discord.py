@@ -207,6 +207,10 @@ class ConnectionState(object):
             member = utils.find(lambda m: m.id == member_id, server.members)
             if member is not None:
                 member.status = data.get('status')
+                if data['game'] != None:
+                    member.game_id = data['game']['name']
+                else:
+                    member.game_id = None
                 member.game_id = data.get('game_id')
                 member.name = user.get('username', member.name)
                 member.avatar = user.get('avatar', member.avatar)
